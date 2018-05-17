@@ -336,20 +336,54 @@ if __name__ == '__main__':
 
 # 4) Fraction Calculator
 
+'''
+Method 1
+''' 
 from fractions import Fraction
 
 op = input('Operation to preform - Add, Subtract, Divide, Multiply: ')
 a = Fraction(input('Enter the first fraction: '))
 b = Fraction(input('Enter the second fraction: '))
-if op == 'Add':
+if op.lower() == 'add':
     add = a+b
     print('Result of Addition of {0} and {1}: {2}'.format(a, b, add))
-if op == 'Subtract':
+if op.lower() == 'subtract':
     subtract = a-b
     print('Result of Subtraction of {0} and {1}: {2}'.format(a, b, subtract))
-if op == 'Divide':
+if op.lower() == 'divide':
     divide = a/b
     print('Result of Division of {0} and {1}: {2}'.format(a, b, divide))
-if op == 'Multiply':
+if op.lower() == 'multiply':
     multiply = a*b
     print('Result of Multiplication of {0} and {1}: {2}'.format(a, b, multiply))
+    
+'''
+Method 2: more aligned with the text
+'''
+from fractions import Fraction
+
+def add(a, b):
+    print('Result of adding {0} and {1} is {2}'.format(a, b, a+b))
+def subtract(a, b):
+    print('Result of subtracting {0} and {1} is {2}'.format(a, b, a-b))
+def divide(a, b):
+    print('Result of dividing {0} by {1} is {2}'.format(a, b, a/b))
+def multiply(a, b):
+    print('Result of multiplying {0} and {1} is {2}'.format(a, b, a*b))
+
+if __name__ == '__main__':
+    try:
+        op = input('Operation to perform - Add, Subtract, Divide, Multiply: ')
+        a = Fraction(input('Enter first fraction: '))
+        b = Fraction(input('Enter second fraction: '))
+
+        if op.lower() == 'add':
+            add(a, b)
+        if op.lower() == 'subtract':
+            subtract(a, b)
+        if op.lower() == 'divide':
+            divide(a, b)   
+        if op.lower() == 'multiply':
+            multiply(a, b)
+    except ValueError:
+        print('Invalid fraction entered')
