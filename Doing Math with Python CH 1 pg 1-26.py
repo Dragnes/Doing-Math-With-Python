@@ -387,3 +387,141 @@ if __name__ == '__main__':
             multiply(a, b)
     except ValueError:
         print('Invalid fraction entered')
+
+
+# 5) Give Exit Power to the User
+'''
+Rewrite programs in this chapter so that they continue executing until asked by the user to exit.
+'''
+def factors(b):
+    for i in range(1, b+1):
+        if b % i == 0:
+            print(i)
+if __name__ == '__main__':
+    while True:
+        b = input('Your Number Please: ')
+        b = float(b)
+        if b > 0 and b.is_integer():
+            factors(int(b))
+        else:
+            print('Please enter a positive integer')
+        answer = input('Do you want to exit? (y) for yes: ')
+        if answer == 'y':
+            break
+
+def multi_table(a):
+    for i in range(1,11):
+        print('{0} x {1} = {2}'.format(a, i, a*i))
+if __name__ == '__main__':
+    while True:
+        a = input('Multiplication table of what integer? ')
+        multi_table(float(a))
+        answer = input('Do you want to exit? (y) for yes: ')
+        if answer == 'y':
+            break
+
+def print_menu():
+    print('1. Kilometers to Miles')
+    print('2. Miles to Kilometers')
+def km_miles():
+    km = float(input('Enter distance in kilometers: '))
+    miles = km / 1.609
+    print('Distance in miles: {0}'.format(miles))
+def miles_km():
+    miles = float(input('Enter distance in miles: '))
+    km = miles * 1.609
+    print('Distance in kilometers: {0}'.format(km))
+if __name__ == '__main__':
+    while True:
+        print_menu()
+        choice = input('Which conversion would you like to do?: ')
+        if choice == '1':
+            km_miles()
+        if choice == '2':
+            miles_km()
+        answer = input('Do you want to exit? (y) for yes: ')
+        if answer == 'y':
+            break
+
+def print_menu():
+    print('1. Kilometers to Miles')
+    print('2. Miles to Kilometers')
+    print('3. Kilograms to Pounds')
+    print('4. Pounds to Kilograms')
+    print('5. Celsius to Fahrenheit')
+    print('6. Fahrenheit to Celsius')  
+def km_miles():
+    km = float(input('Enter distance in kilometers: '))
+    miles = km / 1.609
+    print('Distance in miles: {0}'.format(miles))
+def miles_km():
+    miles = float(input('Enter distane in miles: '))
+    km = miles * 1.609
+    print('Distance in kilometers: {0}'.format(km))
+def kg_pounds():
+    kg = float(input('Enter weight in kilograms: '))
+    pounds = kg * 2.205
+    print('Weight in pounds: {0}'.format(pounds))
+def pounds_kg():
+    pounds = float(input('Enter weight in pounds: '))
+    kg = pounds / 2.205
+    print('Weight in kilograms: {0}'.format(kg))
+def celsius_fahrenheit():
+    celsius = float(input('Enter temperature in celsius: '))
+    fahrenheit = (9/5)*celsius + 32
+    print('Temperature in fahrenheit: {0}'.format(fahrenheit))
+def fahrenheit_celsius():
+    fahrenheit = float(input('Enter temperature in fahrenheit: '))
+    celsius = (fahrenheit - 32)*(5/9)
+    print('Temperature in celsius: {0}'.format(celsius))
+if __name__ == '__main__':
+    while True:
+        print_menu()
+        choice = input('Which conversion would you like to do?: ')
+        if choice == '1':
+            km_miles()
+        if choice == '2':
+            miles_km()
+        if choice == '3':
+            kg_pounds()
+        if choice == '4':
+            pounds_kg()
+        if choice == '5':
+            celsius_fahrenheit()
+        if choice == '6':
+            fahrenheit_celsius()
+        answer = input('Do you want to exit? (y) for yes: ')
+        if answer == 'y':
+            break
+
+from fractions import Fraction
+
+def add(a, b):
+    print('Result of adding {0} and {1} is {2}'.format(a, b, a+b))
+def subtract(a, b):
+    print('Result of subtracting {0} and {1} is {2}'.format(a, b, a-b))
+def divide(a, b):
+    print('Result of dividing {0} by {1} is {2}'.format(a, b, a/b))
+def multiply(a, b):
+    print('Result of multiplying {0} and {1} is {2}'.format(a, b, a*b))
+
+if __name__ == '__main__':
+    while True:
+        try:
+            op = input('Operation to perform - Add, Subtract, Divide, Multiply: ')
+            a = Fraction(input('Enter first fraction: '))
+            b = Fraction(input('Enter second fraction: '))
+
+            if op.lower() == 'add':
+                add(a, b)
+            if op.lower() == 'subtract':
+                subtract(a, b)
+            if op.lower() == 'divide':
+                divide(a, b)   
+            if op.lower() == 'multiply':
+                multiply(a, b)
+        except ValueError:
+            print('Invalid fraction entered')
+        answer = input('Do you want to exit? (y) for yes: ')
+        if answer == 'y':
+            break
