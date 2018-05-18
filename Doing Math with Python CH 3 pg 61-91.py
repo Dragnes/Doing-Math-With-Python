@@ -24,6 +24,8 @@ samplelist = [4,1,3,2]
 samplelist.sort()
 samplelist
 
+# Finding the Median
+
 def calculate_median(numbers):
     N = len(numbers)
     numbers.sort()
