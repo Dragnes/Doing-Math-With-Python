@@ -48,7 +48,7 @@ for (index, item) in enumerate(t):
 
 # Creating Graphs with Matplotlib
 
-from matplotlib import * 
+import matplotlib.pyplot as plt
 from pylab import plot, show
 x_numbers = [1,2,3]
 y_numbers = [2,4,6]
@@ -64,7 +64,8 @@ plot(years, nyc_temp, marker = 'x')
 'Method 2'
 import matplotlib.pyplot as plt
 nyc_temp = [53.9,56.3,56.4,53.4,54.5,55.8,56.8,55.0,55.3,54.0,56.7,56.4,57.3]
-plt.plot(nyc_temp)
+years = range(2000, 2013)
+plt.plot(years, nyc_temp marker = 'o')
 
 
 # Comparing the Monthly Temperature Trends of NYC
@@ -110,7 +111,7 @@ xlabel('Month')
 ylabel('Temperature')
 legend([2000, 2006, 2012])
 'Method 2'
-from matplotlib import * 
+import matplotlib.pyplot as plt
 plt.plot(months, nyc_temp_2000, months, nyc_temp_2006, months, nyc_temp_2012)
 plt.title('Average monthly temperature in NYC')
 plt.xlabel('Month')
@@ -126,7 +127,7 @@ plot(nyc_temp, marker = 'o')
 axis()
 axis(ymin = 0, xmin = 0, ymax = 60)
 'Method 2'
-from matplotlib import * 
+import matplotlib.pyplot as plt
 nyc_temp = [53.9,56.3,56.4,53.4,54.5,55.8,56.8,55.0,55.3,54.0,56.7,56.4,57.3]
 plt.plot(nyc_temp, marker = 'o')
 plt.axis()
@@ -365,9 +366,9 @@ if __name__ == '__main__':
         velocities.append(float(v))
         angles.append(math.radians(float(theta)))
     for i in range(num_trajectories):
+        t_flight = 2*velocities[i]*math.sin(angles[i])/g
         S_x = velocities[i]*math.cos(angles[i])*t_flight
         S_y = velocities[i]*math.sin(angles[i])*(t_flight/2) - (1/2)*g*(t_flight/2)**2
-        t_flight = 2*velocities[i]*math.sin(angles[i])/g
         print('Initial velocity: {0} Angle of Projection: {1}'
               .format(velocities[i], math.degrees(angles[i])))
         print('T: {0} S_x: {1} S_y: {2}'.format(t_flight, S_x, S_y))
