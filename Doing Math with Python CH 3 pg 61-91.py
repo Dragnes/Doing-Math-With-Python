@@ -10,6 +10,9 @@ sum(shortlist)
 
 len(shortlist)
 
+'''
+Calculating the mean
+'''
 def calculate_mean(numbers):
     s = sum(numbers)
     N = len(numbers)
@@ -26,6 +29,9 @@ samplelist
 
 # Finding the Median
 
+'''
+Calculating the median
+'''
 def calculate_median(numbers):
     N = len(numbers)
     numbers.sort()
@@ -43,3 +49,86 @@ if __name__ == '__main__':
     median = calculate_median(donations)
     N = len(donations)
     print('Median donation over the last {0} day is {1}'.format(N, median))
+
+    
+# Finding the Mode and Creating a Frequency Table
+    
+# Finding the Most Common Elements
+
+simplelist = [4, 2, 1, 3, 4]
+from collections import Counter
+c = Counter(simplelist)
+c.most_common()
+c.most_common(1)
+c.most_common(2)
+
+mode = c.most_common(1)
+mode
+mode[0]
+mode[0][0]
+
+# Finding the Mode
+
+'''
+Calculating the Mode
+'''
+from collections import Counter
+def calculate_mode(numbers):
+    c = Counter(numbers)
+    mode = c.most_common(1)
+    return(mode[0][0])
+if __name__ == '__main__':
+    scores = [7,8,9,2,10,9,9,9,9,4,5,6,1,5,6,7,8,6,1,10]
+    mode = calculate_mode(scores)
+    print('The mode of the list of numbers is: {0}'.format(mode))
+
+'''
+Calculating the mode when the list of numbers may have multiple modes
+'''
+from collections import Counter
+def calculate_mode(numbers):
+    c = Counter(numbers)
+    numbers_freq = c.most_common()
+    max_count = numbers_freq[0][1]
+    modes = []
+    for num in numbers_freq:
+        if num[1] == max_count:
+            modes.append(num[0])
+    return(modes)
+if __name__ == '__main__':
+    scores = [5,5,5,4,4,4,9,1,3]
+    modes = calculate_mode(scores)
+    print('The mode(s) of the list of numbers are: ')
+    for mode in modes:
+        print(mode)
+
+# Creating a Frequency Table
+
+'''
+Frequency table for a list of numbers
+'''
+from collections import Counter
+def frequency_table(numbers):
+    table = Counter(numbers)
+    print('Number\tFrequency')
+    for number in table.most_common():
+        print('{0}\t{1}'.format(number[0], number [1]))
+if __name__ == '__main__':
+    scores = [7,8,9,2,10,9,9,9,9,4,5,6,1,5,6,7,8,6,1,10]
+    frequency_table(scores)
+
+'''
+Frequency table for a list of numbers
+Enhanced to display the table sorted by the numbers
+'''
+from collections import Counter
+def frequency_table(numbers):
+    table = Counter(numbers)
+    numbers_freq = table.most_common()
+    numbers_freq.sort()
+    print('Number\tFrequency')
+    for number in numbers_freq:
+        print('{0}\t{1}'.format(number[0], number[1]))
+if __name__ == '__main__':
+    scores = [7,8,9,2,10,9,9,9,9,4,5,6,1,5,6,7,8,6,1,10]
+    frequency_table(scores)
