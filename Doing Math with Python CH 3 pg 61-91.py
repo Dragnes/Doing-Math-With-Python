@@ -275,3 +275,89 @@ if __name__ == '__main__':
     plt.scatter(x, y, marker = 'x')
     plt.ylabel('College admission Test Scores')
     plt.xlabel('High School Grades')
+
+# Reading Data from Files
+
+# Reading Data from a Text File
+
+# Find the sum of the numbers stored in a file (same as in the text)
+def sum_data(filename):
+    s = 0
+    with open(filename) as f:
+        for line in f:
+            s += float(line)
+    print('Sum of the numbers: {0}'.format(s))
+if __name__ == '__main__':
+    sum_data('Ch3_mydata.txt')   # Created my own text file and saved it where the program is located
+# Below I try to stay consistent with flow of text
+def sum_data(filename):
+    s = 0
+    with open(filename) as f:
+        for line in f:
+            s += float(line)
+    return (s)
+if __name__ == '__main__':
+    data = sum_data('Ch3_mydata.txt')
+    print('Sum of the numbers: {0}'.format(data))
+
+'''
+Calculating the mean of numbers stored in a file
+'''
+def read_data(filename):
+    numbers = []
+    with open(filename) as f:
+        for line in f:
+            numbers.append(float(line))
+    return(numbers)
+def calculate_mean(numbers):
+    s = sum(numbers)
+    N = len(numbers)
+    mean = s/N
+    return(mean)
+if __name__ == '__main__':
+    data = read_data('Ch3_mydata.txt')
+    mean = calculate_mean(data)
+    print('Mean: {0}'.format(mean))
+
+# Reading Data from a CSV (comma-separated values) file
+
+import csv
+import matplotlib.pyplot as plt
+
+def scatter_plot(x, y):
+    plt.scatter(x, y)
+    plt.xlabel('Number')
+    plt.ylabel('Square')
+    plt.show()
+def read_csv(filename):
+    numbers = []
+    squared = []
+    with open(filename) as f:
+        reader = csv.reader(f)
+        next(reader)
+        for row in reader:
+            numbers.append(int(row[0]))
+            squared.append(int(row[1]))
+        return(numbers, squared)
+if __name__ == '__main__':
+    numbers, squared = read_csv('Ch3_numbers_csv.csv')
+    scatter_plot(numbers, squared)
+
+# Download csv data from to determine correlation between 'summer' and 'swimming lessons' search on google.
+def read_csv(filename):
+    with open(filename) as f:
+        reader = csv.reader(f)
+        next(reader)
+        
+        summer = []
+        highest_correlated = []
+        for row in reader:
+            summer.append(float(row[1]))
+            highest_correlated.append(float(row[2]))
+    return(summer, highest_correlated)
+
+if __name__ == '__main__':
+    summer, highest_correlated = read_csv('correlate-summer.csv')
+    corr = find_corr_x_y(summer, highest_correlated)
+    print('Highest Correlation: {0}'.format(corr))
+    scatter_plot(summer, highest_correlated)
