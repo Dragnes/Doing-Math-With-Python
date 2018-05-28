@@ -343,12 +343,16 @@ if __name__ == '__main__':
     numbers, squared = read_csv('Ch3_numbers_csv.csv')
     scatter_plot(numbers, squared)
 
-# Download csv data from to determine correlation between 'summer' and 'swimming lessons' search on google.
+# Download csv data to determine correlation between 'summer' and 'swimming lessons'of search on google.
+def scatter_plot(x, y):
+    plt.scatter(x, y)
+    plt.xlabel('Number')
+    plt.ylabel('Square')
+    plt.show()
 def read_csv(filename):
     with open(filename) as f:
         reader = csv.reader(f)
         next(reader)
-        
         summer = []
         highest_correlated = []
         for row in reader:
@@ -358,6 +362,6 @@ def read_csv(filename):
 
 if __name__ == '__main__':
     summer, highest_correlated = read_csv('correlate-summer.csv')
-    corr = find_corr_x_y(summer, highest_correlated)
+    corr = find_corr_x_y(summer, highest_correlated)   # find_corr_x_y program was written earlier
     print('Highest Correlation: {0}'.format(corr))
     scatter_plot(summer, highest_correlated)
