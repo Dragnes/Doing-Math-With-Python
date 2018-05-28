@@ -365,3 +365,100 @@ if __name__ == '__main__':
     corr = find_corr_x_y(summer, highest_correlated)   # find_corr_x_y program was written earlier
     print('Highest Correlation: {0}'.format(corr))
     scatter_plot(summer, highest_correlated)
+
+    
+
+# Chapter 3 Programming Challenges pages 89-91
+
+# 1) Better Correlation Coefficient-Finding Program
+
+def find_corr_x_y(x, y):
+    if len(x) != len(y):
+        print("Correlation can't be found")
+        return(None)
+    n = len(x)
+    prod = []
+    for xi, yi in zip(x, y):
+        prod.append(xi*yi)
+    sum_prod_x_y = sum(prod)
+    sum_x = sum(x)
+    sum_y = sum(y)
+    squared_sum_x = sum_x**2
+    squared_sum_y = sum_y**2
+    x_square = []
+    for xi in x:
+        x_square.append(xi**2)
+    x_square_sum = sum(x_square)
+    y_square = []
+    for yi in y:
+        y_square.append(yi**2)
+    y_square_sum = sum(y_square)
+    numerator = n*sum_prod_x_y - sum_x*sum_y
+    denominator_term1 = n*x_square_sum - squared_sum_x
+    denominator_term2 = n*y_square_sum - squared_sum_y
+    denominator = (denominator_term1*denominator_term2)**0.5
+    correlation = numerator/denominator
+    return(correlation)
+    
+def read_csv(filename):
+    with open(filename) as f:
+        reader = csv.reader(f)
+        next(reader)
+        summer = []
+        highest_correlated = []
+        for row in reader:
+            summer.append(float(row[1]))
+            highest_correlated.append(float(row[2]))
+    return(summer, highest_correlated)
+
+if __name__ == '__main__':
+    summer, highest_correlated = read_csv('correlate-summer.csv')
+    corr = find_corr_x_y(summer, highest_correlated)
+    scatter_plot(summer, highest_correlated)
+
+'''
+A better way to check from data is to generate two test data as done by the author
+'''
+def find_corr_x_y(x, y):
+    if len(x) != len(y):
+        return(None)
+    n = len(x)
+    prod = []
+    for xi, yi in zip(x, y):
+        prod.append(xi*yi)
+    sum_prod_x_y = sum(prod)
+    sum_x = sum(x)
+    sum_y = sum(y)
+    squared_sum_x = sum_x**2
+    squared_sum_y = sum_y**2
+    x_square = []
+    for xi in x:
+        x_square.append(xi**2)
+    x_square_sum = sum(x_square)
+    y_square = []
+    for yi in y:
+        y_square.append(yi**2)
+    y_square_sum = sum(y_square)
+    numerator = n*sum_prod_x_y - sum_x*sum_y
+    denominator_term1 = n*x_square_sum - squared_sum_x
+    denominator_term2 = n*y_square_sum - squared_sum_y
+    denominator = (denominator_term1*denominator_term2)**0.5
+    correlation = numerator/denominator
+    return(correlation)
+def generate_test_data(m, n):
+    x = range(0, m)
+    y = [4*i for i in range(0, n)]
+    return(x, y)
+if __name__ == '__main__':
+    x, y = generate_test_data(10, 10)
+    corr = find_corr_x_y(x, y)
+    if not corr:
+        print("Correlation can't be found")
+    else:
+        print("The Correlation Coefficient between x and y is {0}".format(corr))
+    x, y = generate_test_data(10, 11)
+    corr = find_corr_x_y(x, y)
+    if not corr:
+        print("Correlation can't be found")
+    else:
+        print("The Correlation Coefficient between x and y is {0}".format(corr))    
